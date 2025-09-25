@@ -1,0 +1,51 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"%CLAUDE_PROJECT_DIR%\\.claude\\hooks\\gcloud_session_check.bat\""
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -ExecutionPolicy Bypass -File \"%CLAUDE_PROJECT_DIR%\\.claude\\hooks\\notificacion_hook.ps1\""
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -ExecutionPolicy Bypass -File \"%CLAUDE_PROJECT_DIR%\\.claude\\hooks\\notificacion_hook.ps1\""
+          },
+          {
+            "type": "command",
+            "command": "\"%CLAUDE_PROJECT_DIR%\\.claude\\hooks\\gcloud_reauth_hook.bat\""
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(uv run python:*)",
+      "Bash(git diff:*)",
+      "Bash(git status:*)",
+      "Bash(git add:*)",
+      "Bash(git worktree:*)",
+      "Bash(ls:*)"
+    ]
+  }
+}
